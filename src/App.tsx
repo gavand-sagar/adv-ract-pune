@@ -1,24 +1,25 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
+import { Link, useNavigate } from 'react-router-dom';
 import './App.css';
-import LifeCycle from './LifeCycle';
-import FormDemo from './components/form-demo/FormDemo';
-import MyButtonComponent from './components/wrapper-issue/MyButtonComponent';
-import Panel from './components/hoc-demo/Panel';
-import ShowOnlyWhen from './components/hoc-demo/ShowOnlyWhen';
-import ShowNTimes from './components/hoc-demo/ShowNTimes';
-import Dialog from './components/hoc-demo/Dialog';
+import AppRoutes from './routes/app.routes';
 
 function App() {
 
+  const navigate = useNavigate();
+
+  function logout(){
+    localStorage.clear();
+    navigate('/login')
+
+  }
+
+
   return (
     <div className="App">
-      <h1>THIS IS APP</h1>
-      <Dialog
-        header={<span>Sagar</span>}
-        body={<span>I am a trainer.</span>}
-        footer={<button>Ok</button>}
-      />
+      <Link to={'/dashboard'}>Dashboard</Link>
+      <Link to={'/inventory'}>Inventory</Link>
+      <button onClick={logout}>LOGOUT</button>
+      <hr/>
+      <AppRoutes/>
     </div>
   );
 }

@@ -4,13 +4,11 @@ type Props = {
     children: React.ReactNode | React.ReactNode[]
 }
 
-export default function ShowOnlyWhen({ children }: Props) {
-     console.log(children)
+export default function ShowOnlyWhenSpan({ children }: Props) {
+    console.log(children)
     return (
         <>
-            {
-                (new Date().getMinutes() == 21) && children
-            }
+            {(children as React.ReactNode[]).filter((x:any)=> x.type == "span")}
         </>
     )
 }
