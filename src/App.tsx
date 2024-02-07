@@ -4,8 +4,11 @@ import AppRoutes from './routes/app.routes';
 import { useSelector } from 'react-redux';
 import { RootState } from './redux/store';
 import Loader from './core/compoents/Loader';
+import { useEffect } from 'react';
 
 function App() {
+
+
 
   const token = useSelector((s: RootState) => s.user.token)
   const fact = useSelector((s: RootState) => s.user.fact)

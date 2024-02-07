@@ -1,0 +1,9 @@
+{
+    "common": {
+        "saveButton": "Save",
+        "editButton": "Edit"
+    },
+    "login": {
+        "heading": "LOGIN PAGE"
+    }
+}

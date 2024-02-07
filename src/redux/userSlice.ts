@@ -1,16 +1,29 @@
+import { LanguagePack } from './../core/models/language';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface UserState {
     token: string,
-    fact:string,
-    isFactloading:boolean;
+    fact: string,
+    isFactloading: boolean;
+    languagePack: LanguagePack,
+    language:string
 }
 
 const initialState: UserState = {
     token: "",
-    fact:"",
-    isFactloading:false
+    fact: "",
+    isFactloading: false,
+    language:"english",
+    languagePack: {
+        common: {
+            editButton: "",
+            saveButton: ""
+        },
+        login: {
+            heading: ""
+        }
+    }
 }
 
 
@@ -24,22 +37,27 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         setToken: (state, action: PayloadAction<string>) => {
-            console.log(action.payload);
             state.token = action.payload;
+        },
+        setLanguagePack: (state, action: PayloadAction<LanguagePack>) => {
+            state.languagePack = action.payload;
+        },
+        setLanguage: (state, action: PayloadAction<string>) => {
+            state.language = action.payload;
         }
     },
-    extraReducers: (builder)=>{
-        builder.addCase(setFact.fulfilled,(state,action)=>{
+    extraReducers: (builder) => {
+        builder.addCase(setFact.fulfilled, (state, action) => {
             state.fact = action.payload.fact;
             state.isFactloading = false
         })
-        builder.addCase(setFact.pending,(state,action)=>{
+        builder.addCase(setFact.pending, (state, action) => {
             state.isFactloading = true;
         })
     }
 })
 
 // Action creators are generated for each case reducer function
-export const { setToken } = userSlice.actions
+export const { setToken,setLanguagePack,setLanguage } = userSlice.actions
 
 export default userSlice.reducer
