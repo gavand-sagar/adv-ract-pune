@@ -1,9 +1,14 @@
-import React from 'react'
+import { AppDispatch } from '../redux/store'
+import { setFact, setToken } from '../redux/userSlice'
+import { useDispatch } from 'react-redux'
 
 export default function Login() {
     
+    const dispatch = useDispatch<AppDispatch>()
+    
     function login(){
-        localStorage.setItem('token',"ABC")
+        dispatch(setToken("ABC"))
+        dispatch(setFact())
     }
 
     return (
